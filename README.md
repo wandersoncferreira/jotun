@@ -1,6 +1,6 @@
 # jotun
 
-<img src="logo.jpg"
+<img src="jotun.jpg"
 title="giants!" align="left" padding="5px" />
 <small>
 A Clojure library designed to interact with **Anti-Captcha** services
