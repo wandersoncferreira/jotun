@@ -1,7 +1,7 @@
 # jotun
 
 <img src="jotun.jpg"
-title="giants!" align="left" padding="5px" />
+title="giants!" align="left" padding="10px" />
 
 <small>
 
