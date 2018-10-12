@@ -1,6 +1,6 @@
 language: clojure
 lein: lein
-script: lein test
+script: lein with-profile prod test
 branches:
   only:
     - master
