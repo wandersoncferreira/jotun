@@ -1,6 +1,6 @@
 (ns jotun.core
   (:require [clj-http.client :as http]
-            [config.core :refer [env]]))
+            [config.core :refer [env load-env]]))
 
 (defrecord JotunResult
     [result error? error])
@@ -21,7 +21,7 @@
   "Function to send a captcha to Anti-captcha."
   [task & {:keys [callback-url language-pool soft-id]}]
   (let [task-url (str (:anti-captcha-url env) "createTask")
-        prep-body {:clientKey (:api-key env) :task task}
+        prep-body {:clientKey (:apikey env) :task task}
         body (assoc prep-body :callbackUrl callback-url :languagePool language-pool)
         pos-body (into {} (filter second body))]
     (jotun-post task-url pos-body)))

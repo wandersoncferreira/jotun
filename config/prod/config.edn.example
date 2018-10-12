@@ -1,4 +1,3 @@
-{:api-key "your-client-key-from-anti-captcha-website"
- :anti-captcha-url "https://api.anti-captcha.com/"
+{:anti-captcha-url "https://api.anti-captcha.com/"
  :callback? false
  :callback-url nil}
