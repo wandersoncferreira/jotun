@@ -1,3 +1,0 @@
-{:anti-captcha-url "https://api.anti-captcha.com/"
- :callback? false
- :callback-url nil}
