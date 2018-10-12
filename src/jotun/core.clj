@@ -13,7 +13,7 @@
                                 :content-type :json
                                 :as :json}))
         error (:errorId resp)]
-    (if (= error 0)
+    (if (or (= error 0) (nil? error))
       (JotunResult. resp false "")
       (JotunResult. false true (:errorDescription resp)))))
 

@@ -35,6 +35,16 @@ intellect to wise ancient creatures. Peak your side.
 There are still many decisions related to public interfaces and
 project structure to be developed.
 
+## Critical
+
+The Anti-Captcha service is **paid**, therefore you need to get an
+account at their WebSite and charge it with a few dolars. It's the
+cheapest solution I found in the market.
+
+Please insert your **client key** inside the
+`config/{dev,prod}/config.edn` file.
+
+
 ## Usage
 
 ...
