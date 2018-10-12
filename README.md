@@ -1,4 +1,5 @@
 # jotun
+[![Build Status](https://travis-ci.com/wandersoncferreira/jotun.svg?branch=master)](https://travis-ci.com/wandersoncferreira/jotun)
 
 <img src="jotun.jpg"
 title="giants" align="left" padding="15px"/>
