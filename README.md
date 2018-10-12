@@ -45,10 +45,38 @@ Please insert your **client key** inside the
 `config/{dev,prod}/config.edn` file.
 
 
+## Installation
+
+#### Leiningen/Boot
+
+``` shell
+[jotun "0.1.0"]
+```
+
+#### Clojure CLI/deps.edn
+
+``` shell
+jotun {:mvn/version "0.1.0"}
+```
+
+#### Gradle
+
+``` shell
+compile 'jotun:jotun:0.1.0'
+```
+
+#### Maven
+
+``` xml
+<dependency>
+  <groupId>jotun</groupId>
+  <artifactId>jotun</artifactId>
+  <version>0.1.0</version>
+</dependency>
+```
+
+
 ## Usage
-
-...
-
 
 
 ## License
