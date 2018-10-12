@@ -1,6 +1,7 @@
 (ns jotun.core
   (:require [clj-http.client :as http]
-            [config.core :refer [env load-env]]))
+            [config.core :refer [env load-env]])
+  (:gen-class))
 
 (defrecord JotunResult
     [result error? error])

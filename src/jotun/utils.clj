@@ -1,6 +1,7 @@
 (ns jotun.utils
   (:require [config.core :refer [env]]
-            [jotun.core :as jotun]))
+            [jotun.core :as jotun])
+  (:gen-class))
 
 (defn get-balance
   "Function to get the right value for
