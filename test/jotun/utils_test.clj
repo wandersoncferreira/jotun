@@ -1,6 +1,7 @@
 (ns jotun.utils-test
   (:require [clojure.test :refer :all]
-            [jotun.utils :as utils]))
+            [jotun.utils :as utils]
+            [config.core :refer [env]]))
 
 (deftest stats-description-test
   (testing "If all the descriptions are available in the map"
