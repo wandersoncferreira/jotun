@@ -10,7 +10,7 @@
 (deftest stats-queue-test
   (testing "The answer from the API were true, so there must be these keys."
     (is (= [:waiting :load
-            :bid :speed :total] (keys utils/get-queue-stats)))))
+            :bid :speed :total] (keys (utils/get-queue-stats))))))
 
 (deftest stats-queue-values-test
   (testing "Verify numeric numbers in the answer from the API."
