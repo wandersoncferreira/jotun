@@ -9,6 +9,3 @@ pom.xml.asc
 /.nrepl-port
 .hgignore
 .hg/
-config/dev/config.edn
-config/prod/config.edn
-

@@ -1,7 +1,8 @@
 (ns jotun.image-to-text.core
   (:require [clojure.spec.alpha :as s]
             [config.core :refer [env]]
-            [jotun.core :as jotun]))
+            [jotun.core :as jotun])
+  (:gen-class))
 
 (s/def ::type string?)
 (s/def ::body string?)
