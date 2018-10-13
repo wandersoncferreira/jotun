@@ -42,16 +42,20 @@
           (recur task-id (- num-tries 1)))))))
 
 (defn- get-right-base64
-  "`solve` function can receive either a direct base64 image or the filepath
-  for a image. Let's figure it out which one we got. I would like to keep the
-  interface of the `solve` function unchanged."
+  "`solve` function can receive either a direct base64 image, the
+  filepath for a image or a url to an image. Let's figure it out which
+  one we got. I would like to keep the interface of the `solve`
+  function unchanged."
   [undefined-var]
-  (if (.isFile (clojure.java.io/file undefined-var))
-    (j-convert/convert-image-to-base64 undefined-var)
-    undefined-var))
+  (cond (.isFile (clojure.java.io/file undefined-var))
+        (j-convert/convert-image-from-filesystem undefined-var)
+        (re-find #"^http[s]://" undefined-var)
+        (j-convert/convert-image-from-url undefined-var)
+        :else
+        undefined-var))
 
-;; TODO: add support to receive a link to download the image captcha
-;; improve the inner interface to handle all of these subtle differences.
+
+;; TODO: improve the inner interface to handle all of these subtle differences.
 (defn solve
   "Function to solve image captchas. It can either receive a direct base64 from
   an image or the filepath to an image on disk."

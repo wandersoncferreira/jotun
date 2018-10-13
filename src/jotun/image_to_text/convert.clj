@@ -1,8 +1,9 @@
 (ns jotun.image-to-text.convert
   (:require [clojure.data.codec.base64 :as b64]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io]
+            [clj-http.client :as http]))
 
-(defn convert-image-to-base64
+(defn convert-image-from-filesystem
   "Function to convert image from filepath to base64"
   [image-path]
   (->> image-path
@@ -19,7 +20,7 @@
     (let [path (first paths)
           filename (last (clojure.string/split path #"/"))
           name (first (clojure.string/split filename #"\."))]
-      (convert-coll-images (rest paths) :result (assoc result name (convert-image-to-base64 path))))))
+      (convert-coll-images (rest paths) :result (assoc result name (convert-image-from-filesystem path))))))
 
 (defn convert-image-dir-to-base64
   "Function to convert images from a directory into a base64 vector"
@@ -32,3 +33,12 @@
          (filter #(re-find check-img (str (.getFileName %))))
          (map str)
          convert-coll-images)))
+
+(defn convert-image-from-url
+  "Function to get base64 image from URL."
+  [url]
+  (-> url
+      (http/get {:as :byte-array})
+      :body
+      (#(.encodeToString (java.util.Base64/getEncoder) %))))
+
