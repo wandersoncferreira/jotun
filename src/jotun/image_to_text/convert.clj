@@ -10,11 +10,10 @@
        (org.apache.commons.io.FileUtils/readFileToByteArray)
        (.encodeToString (java.util.Base64/getEncoder))))
 
-;; TODO: change it to use concurrency and tail call position...
+;; TODO: change it to use parallelism and tail call position...
 (defn- convert-coll-images
   "Conversion of a collection of images."
   [paths & {:keys [result] :or {result {}}}]
-  paths
   (if (empty? paths)
     result
     (let [path (first paths)
@@ -32,4 +31,4 @@
          (map #(.toPath %))
          (filter #(re-find check-img (str (.getFileName %))))
          (map str)
-         future-conversions)))
+         convert-coll-images)))
