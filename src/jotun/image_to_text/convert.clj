@@ -1,7 +1,8 @@
 (ns jotun.image-to-text.convert
   (:require [clojure.data.codec.base64 :as b64]
             [clojure.java.io :as io]
-            [clj-http.client :as http]))
+            [clj-http.client :as http])
+  (:gen-class))
 
 (defn convert-image-from-filesystem
   "Function to convert image from filepath to base64"
