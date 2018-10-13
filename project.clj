@@ -1,4 +1,4 @@
-(defproject jotun "0.1.0"
+(defproject jotun "0.3.1"
   :description "Package to deal with Anti-Captcha libraries in Clojure."
   :url "http://github.com/wandersoncferreira/jotun"
   :license {:name "Eclipse Public License"

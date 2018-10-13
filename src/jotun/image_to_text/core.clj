@@ -32,7 +32,7 @@
   "Function to ask for actively ask for result from the Anti-Captcha service."
   [task-id & {:keys [num-tries wait-time] :or {num-tries 5 wait-time 1000}}]
   (let [result-url (str (:anti-captcha-url env) "getTaskResult")
-        resp (jotun/jotun-post result-url {:clientKey (:api-key env) :taskId task-id})]
+        resp (jotun/jotun-post result-url {:clientKey (:apikey env) :taskId task-id})]
     (if (:error? resp)
       (:error resp)
       (if (or (= (:status (:result resp)) "ready") (= 0 num-tries))

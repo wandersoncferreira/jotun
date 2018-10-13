@@ -51,19 +51,19 @@ The package will manage to get the correct result and use it accordingly.
 #### Leiningen/Boot
 
 ``` shell
-[jotun "0.1.0"]
+[jotun "0.2.0"]
 ```
 
 #### Clojure CLI/deps.edn
 
 ``` shell
-jotun {:mvn/version "0.1.0"}
+jotun {:mvn/version "0.2.0"}
 ```
 
 #### Gradle
 
 ``` shell
-compile 'jotun:jotun:0.1.0'
+compile 'jotun:jotun:0.2.0'
 ```
 
 #### Maven
@@ -72,13 +72,34 @@ compile 'jotun:jotun:0.1.0'
 <dependency>
   <groupId>jotun</groupId>
   <artifactId>jotun</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 
 
 ## Usage
 
+``` clojure
+(ns ex-jotun.core
+  (:require [jotun.image-to-text.core :refer [solve]]
+            [jotun.utils :as j-utils]))
+
+(let [image-url "https://www.scienceabc.com/wp-content/uploads/2016/07/Captcha-ex.jpg"]
+  (solve image-url))
+;; => {:cost "0.000700", :ip "179.110.41.240", :url "http://209.212.146.169/570/153941121973340.jpg",
+;;     :solution "smwm", :create-time 1539411219, :end-time 1539411225}
+
+(j-utils/get-balance);; => 9.7952
+
+
+(j-utils/get-queue-stats)
+;; => {:waiting {:value 18, :message "Amount of idle workers online, waiting for a task"},
+;;     :load {:value 98.42, :message "Queue load in percents"},
+;;     :bid {:value 6.509939E-4, :message "Average task solution cost in USD"},
+;;     :speed {:value 11.15, :message "Average task solution speed in seconds"},
+;;     :total {:value 1138, :message "Total number of workers"}}
+
+```
 
 ## License
 
