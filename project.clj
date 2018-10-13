@@ -6,6 +6,7 @@
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [clj-http "3.9.1"]
                  [cheshire "5.8.1"]
-                 [yogthos/config "1.1.1"]]
+                 [yogthos/config "1.1.1"]
+                 [org.clojure/data.codec "0.1.1"]]
   :profiles {:prod {:resource-paths ["config/prod"]}
              :dev {:resource-paths ["config/dev"]}})
