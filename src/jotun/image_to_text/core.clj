@@ -1,7 +1,8 @@
 (ns jotun.image-to-text.core
   (:require [clojure.spec.alpha :as s]
             [config.core :refer [env]]
-            [jotun.core :as jotun])
+            [jotun.core :as jotun]
+            [jotun.image-to-text.convert :as j-convert])
   (:gen-class))
 
 (s/def ::type string?)
@@ -40,10 +41,22 @@
           (Thread/sleep wait-time)
           (recur task-id (- num-tries 1)))))))
 
+(defn- get-right-base64
+  "`solve` function can receive either a direct base64 image or the filepath
+  for a image. Let's figure it out which one we got. I would like to keep the
+  interface of the `solve` function unchanged."
+  [undefined-var]
+  (if (.isFile (clojure.java.io/file undefined-var))
+    (j-convert/convert-image-to-base64 undefined-var)
+    undefined-var))
+
+;; TODO: add support to receive a link to download the image captcha
+;; improve the inner interface to handle all of these subtle differences.
 (defn solve
-  "Function to solve the "
-  [body & {:keys [phrase case numeric math minLength maxLength]}]
-  (let [tsk1 {:body body :type "ImageToTextTask"}
+  "Function to solve image captchas. It can either receive a direct base64 from
+  an image or the filepath to an image on disk."
+  [undefined-input & {:keys [phrase case numeric math minLength maxLength]}]
+  (let [tsk1 {:body (get-right-base64 undefined-input) :type "ImageToTextTask"}
         task (assoc tsk1 :phrase phrase :case case :numeric numeric :math math
                     :minLength minLength :maxLength maxLength)
         pos-task (into {} (filter second task))]
@@ -52,3 +65,6 @@
             task-id (-> resp :result :taskId)]
         (get-result task-id))
       (throw (AssertionError. "You have a bad formatted task.")))))
+
+
+
