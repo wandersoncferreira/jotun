@@ -2,8 +2,12 @@
   (:require [clojure.spec.alpha :as s]
             [config.core :refer [env]]
             [jotun.core :as jotun]
-            [jotun.image-to-text.convert :as j-convert])
+            [jotun.image-to-text.convert :as j-convert]
+            [jotun.logs :as logs]
+            [taoensso.timbre :as timbre])
   (:gen-class))
+
+(logs/jotun-config-log)
 
 (s/def ::type string?)
 (s/def ::body string?)
@@ -26,7 +30,6 @@
      :solution (:text solution)
      :create-time (:createTime res)
      :end-time (:endTime res)}))
-
 
 (defn- get-result
   "Function to ask for actively ask for result from the Anti-Captcha service."
@@ -52,7 +55,8 @@
         (re-find #"^http[s]://" undefined-var)
         (j-convert/convert-image-from-url undefined-var)
         :else
-        undefined-var))
+        (do (timbre/warn "We didn't identify your input. Assuming it is a base64 value")
+            undefined-var)))
 
 
 ;; TODO: improve the inner interface to handle all of these subtle differences.
@@ -68,7 +72,5 @@
       (let [resp (jotun/send-captcha pos-task)
             task-id (-> resp :result :taskId)]
         (get-result task-id))
-      (throw (AssertionError. "You have a bad formatted task.")))))
-
-
-
+      (do (timbre/error "`solve` couldn't help you out. You have a bad formatted task.")
+          (throw (AssertionError. "You have a bad formatted task."))))))
