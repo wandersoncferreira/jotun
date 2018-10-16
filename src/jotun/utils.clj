@@ -3,6 +3,7 @@
             [jotun.core :as jotun])
   (:gen-class))
 
+
 (defn get-balance
   "Function to get the right value for
   the balance at the Anti-Captcha website."
@@ -30,3 +31,4 @@
          (map (fn [k] {k {:value (k (:result resp))
                           :message (k stats-map)}}))
          (into {}))))
+

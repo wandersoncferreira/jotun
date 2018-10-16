@@ -7,6 +7,7 @@
                  [clj-http "3.9.1"]
                  [cheshire "5.8.1"]
                  [yogthos/config "1.1.1"]
-                 [org.clojure/data.codec "0.1.1"]]
+                 [org.clojure/data.codec "0.1.1"]
+                 [com.taoensso/timbre "4.10.0"]]
   :profiles {:prod {:resource-paths ["config/prod"]}
              :dev {:resource-paths ["config/dev"]}})
