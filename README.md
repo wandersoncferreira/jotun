@@ -51,19 +51,19 @@ The package will manage to get the correct result and use it accordingly.
 #### Leiningen/Boot
 
 ``` shell
-[jotun "0.3.1"]
+[jotun "0.3.2"]
 ```
 
 #### Clojure CLI/deps.edn
 
 ``` shell
-jotun {:mvn/version "0.3.1"}
+jotun {:mvn/version "0.3.2"}
 ```
 
 #### Gradle
 
 ``` shell
-compile 'jotun:jotun:0.3.1'
+compile 'jotun:jotun:0.3.2'
 ```
 
 #### Maven
